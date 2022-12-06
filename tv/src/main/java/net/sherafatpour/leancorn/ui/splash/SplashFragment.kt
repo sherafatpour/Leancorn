@@ -29,17 +29,24 @@ class SplashFragment : Fragment() {
         viewModel.shouldGoToHome.asLiveData().observe(viewLifecycleOwner) { shouldGoToHome ->
 
             if (shouldGoToHome) {
-                val action = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
 
-                findNavController().navigate(
-                    action, NavOptions.Builder().setPopUpTo(R.id.splashFragment, true).build()
-                )
+                goToHome()
 
             }
         }
 
 
         return binding.root;
+    }
+
+    private fun goToHome() {
+        val action = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
+        //navigate to homeFragment(action) with disable backPress
+        findNavController()
+            .navigate(action, NavOptions.Builder()
+                .setPopUpTo(R.id.splashFragment,true)
+                .build()
+        )
     }
 
     companion object {
