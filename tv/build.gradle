@@ -44,7 +44,11 @@ dependencies {
     //core
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.leanback:leanback:1.0.0'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    //implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+
+    //coil
+    implementation "io.coil-kt:coil:2.2.2"
 
 
     //navigation
@@ -58,7 +62,12 @@ dependencies {
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Moshi : Moshi
+/*    implementation 'com.squareup.moshi:moshi:1.13.0'
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.13.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'*/
 
     // Kotlin Lifecycle KTX
     def lifecycle_version = "2.5.1"
