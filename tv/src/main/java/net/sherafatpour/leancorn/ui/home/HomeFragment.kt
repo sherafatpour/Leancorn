@@ -33,7 +33,7 @@ class HomeFragment : BrowseSupportFragment() {
         super.onCreate(savedInstanceState)
 
         title = getString(R.string.app_name)
-        if (savedInstanceState != null) {
+        if (savedInstanceState == null) {
             prepareEntranceTransition()
         }
     }
