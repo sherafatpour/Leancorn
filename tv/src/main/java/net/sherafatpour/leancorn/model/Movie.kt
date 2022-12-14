@@ -1,7 +1,11 @@
 package net.sherafatpour.leancorn.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Movie(
     @SerializedName("actors")
     val actors: List<String>,
@@ -24,5 +28,7 @@ data class Movie(
     @SerializedName("year")
     val year: Int?
 
-
-)
+):Parcelable{
+    @IgnoredOnParcel
+    var categoryId: Long = -1
+}

@@ -19,4 +19,11 @@
         android:name="net.sherafatpour.leancorn.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="net.sherafatpour.leancorn.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument android:name="category" app:argType="net.sherafatpour.leancorn.model.Category"/>
+    </fragment>
 </navigation>

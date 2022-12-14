@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -29,6 +28,7 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
             with(_moviesResponse) {
                 tryEmit(Resource.Loading())
                 tryEmit(Resource.Success(repository.getMovies().categorize()))
+
                 //TODO : Handle network error
 
 
@@ -36,7 +36,7 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
         }
     }
 
-      private fun List<Movie>.categorize(): List<Category> {
+       private fun List<Movie>.categorize(): List<Category> {
         val genreSet = mutableSetOf<String>()
         for (movie in this) {
             for (genre in movie.genre) {
@@ -45,10 +45,12 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
         }
         val feedItems = mutableListOf<Category>()
         for ((index, genre) in genreSet.withIndex()) {
+            val categoryId = index.toLong()
             val genreMovies = this.filter { it.genre.contains(genre) }
+                .map {movie -> movie.copy().apply { this.categoryId = categoryId } }.shuffled()
             feedItems.add(
                 Category(
-                    index.toLong(), genre, genreMovies
+                    categoryId, genre, genreMovies
                 )
             )
         }
